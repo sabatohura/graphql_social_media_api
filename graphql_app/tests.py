@@ -34,44 +34,7 @@ class GraphQLTest(GraphQLTestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(expected, res.json())
 
-    # def test_retrieve_user_with_posts(self):
-    #     expected = {
-    #         "data": {
-    #             "user": {
-    #                 "id": "2",
-    #                 "name": "Dan Bilzerian",
-    #                 "followers": [
-    #                     {
-    #                         "name": "John Doe"
-    #                     }
-    #                 ],
-    #                 "postSet": [
-    #                     {
-    #                         "content": "I love to party!!!"
-    #                     }
-    #                 ]
-    #             }
-    #         }
-    #     }
 
-    #     res = self.query(
-    #         """
-    #         {
-    #           user(id: 2) {
-    #             id
-    #             name
-    #             followers {
-    #               name
-    #             }
-    #             postSet {
-    #               content
-    #             }
-    #           }
-    #         }
-    #         """
-    #     )
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(expected, res.json())
 
     def test_create_user(self):
          expected = {
@@ -104,5 +67,42 @@ class GraphQLTest(GraphQLTestCase):
          self.assertEqual(res.status_code, 200)
          self.assertEqual(expected, res.json())
          
+    def test_retrieve_user_with_posts(self):
+        expected = {
+            "data": {
+                "user": {
+                    "id": "2",
+                    "name": "Dan Bilzerian",
+                    "followers": [
+                        {
+                            "name": "John Doe"
+                        }
+                    ],
+                    "postSet": [
+                        {
+                            "content": "I love to party!!!"
+                        }
+                    ]
+                }
+            }
+        }
 
+        res = self.query(
+            """
+            {
+              user(id: 2) {
+                id
+                name
+                followers {
+                  name
+                }
+                postSet {
+                  content
+                }
+              }
+            }
+            """
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(expected, res.json())
 # Create your tests here.

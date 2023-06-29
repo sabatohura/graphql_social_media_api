@@ -8,6 +8,10 @@ class User(DjangoObjectType):
     class Meta:
         model = models.User
 
+class Post(DjangoObjectType):
+    class Meta:
+        model = models.Post
+
 class UserInput(graphene.InputObjectType):
     name = graphene.String()
 
@@ -41,4 +45,4 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query, mutation=Mutation) 
