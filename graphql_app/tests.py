@@ -105,4 +105,20 @@ class GraphQLTest(GraphQLTestCase):
         )
         self.assertEqual(res.status_code, 200)
         self.assertEqual(expected, res.json())
+
+
+    def test_list_users(self):
+        res = self.query(
+            """
+            {
+            users {
+                name
+                }
+            }
+            """
+        )
+        
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(2, len(res.json()["data"]["users"]))
+
 # Create your tests here.
